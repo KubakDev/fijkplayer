@@ -15,12 +15,16 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 
 dependencies {
-
-    // implementation(name: 'fijkplayer-full-release', ext: 'aar')
-
-    // fijkplayer-full include the java lib and native shared libs for armv5 armv7 arm64 x86 x86_64
-    implementation 'com.befovy.fijkplayer:fijkplayer-full:0.7.16'
+    // Local AAR: upstream fijkplayer-full:0.7.16 with x86_64 .so replaced by
+    // 16 KB page-aligned builds (from GSYVideoPlayer gsyvideoplayer-x64).
+    // arm64-v8a from upstream was already 16 KB+ aligned.
+    implementation(name: 'fijkplayer-full-release', ext: 'aar')
     implementation 'androidx.annotation:annotation:1.2.0'
 }
