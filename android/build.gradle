@@ -15,16 +15,10 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 dependencies {
     // Local AAR: upstream fijkplayer-full:0.7.16 with x86_64 .so replaced by
     // 16 KB page-aligned builds (from GSYVideoPlayer gsyvideoplayer-x64).
-    // arm64-v8a from upstream was already 16 KB+ aligned.
-    implementation(name: 'fijkplayer-full-release', ext: 'aar')
+    // Use files() so Flutter app builds resolve the AAR without flatDir.
+    implementation files('libs/fijkplayer-full-release.aar')
     implementation 'androidx.annotation:annotation:1.2.0'
 }
